@@ -5,8 +5,8 @@ void main(){
    //Declaracao das VARIAVEIS 
    int populacao01, populacao02, n_turistas01, n_turistas02;
    char estado01[50], estado02[50], cod01[20], cod02[20], nome_cidade01[50], nome_cidade02[50];
-   float area01, area02, pib01, pib02;
-   int var_decisao;
+   float area01, area02, pib01, pib02, denspop01, denspop02;
+   int opcao;
 
    //Leitura dos valores da PRIMEIRA CARTA
    printf("Digite o ESTADO da primeira carta: ");
@@ -53,18 +53,24 @@ void main(){
    printf("Digite o NUMERO DE PONTOS TURISTICOS da segunda carta: ");
    scanf("%d", &n_turistas02);
 
+
+   //Calcula as DENSIDADES DEMOGRAFICAS DAS CIDADES
+   denspop01 = populacao01 / area01;
+   denspop02 = populacao02 / area02;
+
     printf("\n\n******************************************\n\n");
     
     printf("Para comparar as POPULAÇOES - Digite 1 \n");
     printf("Para comparar as AREAS - Digite 2 \n");
     printf("Para comparar os PIB - Digite 3 \n");
     printf("Para comparar os NUMEROS DE PONTOS TURISTICOS - Digite 4 \n");
+    printf("Para comparar as DENSIDADES DEMOGRAFICAS - Digite 5 \n");
     printf("\nEscolha qual caracteristica deseja comparar: ");
-    scanf("%d", &var_decisao);
+    scanf("%d", &opcao);
 
     printf("\n******************************************\n");
 
-    switch (var_decisao)
+    switch (opcao)
     {
     case 1:
         // POPULAÇOES - variável escolhida para a comparação
@@ -113,7 +119,19 @@ void main(){
         } else{
             printf("Resultado: Carta 2 (%s) venceu! \n", nome_cidade02);
         }
-        break;        
+        break;
+    case 5:
+    // DENSIDADE DEMOGRAFICA - variável escolhida para a comparação
+    printf("Comparação de Cartas (Atributo: DENSIDADE DEMOGRAFICA):\n");
+    printf("Carta 1 - %s : %d \n", nome_cidade01, denspop01);
+    printf("Carta 2 - %s : %d \n", nome_cidade02, denspop02);
+    //Estrutura de Decisão para comparar os N PONTOS TURISTICOs e verificar qual é o vencedor  
+    if( denspop01 > denspop02){
+        printf("Resultado: Carta 1 (%s) venceu! \n", nome_cidade01);
+    } else{
+        printf("Resultado: Carta 2 (%s) venceu! \n", nome_cidade02);
+    }
+    break;             
     default:
         break;
     }
